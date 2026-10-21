@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Invitación · Mis XV Catherine</title>
     <meta name="theme-color" content="#38131a">
-
+ 
     <!-- Open Graph / WhatsApp Preview -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Mis XV · Catherine 🌹">
@@ -13,7 +13,7 @@
     <meta property="og:image" content="https://TU-USUARIO.github.io/xv-catherine/og-image.jpg">
     <meta property="og:url" content="https://TU-USUARIO.github.io/xv-catherine/">
     <meta name="twitter:card" content="summary_large_image">
-
+ 
     <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,27 +23,33 @@
     <link rel="stylesheet" href="sello.css">
 </head>
 <body class="sello-page">
-
+ 
+    <!-- La música empieza al tocar el sello y continúa en invitacion.html -->
+    <audio id="bgm" src="musica.mp3" loop preload="auto"></audio>
+ 
     <div class="invitation-container">
         <!-- Sello de Cera 3D interactivo -->
         <div class="wax-seal-wrapper">
-            <a href="invitacion.html" class="wax-seal" aria-label="Abrir invitación">
+            <a href="invitacion.html" class="wax-seal" id="openSeal" aria-label="Abrir invitación">
                 <span>C</span>
             </a>
         </div>
-
+ 
         <!-- Contenido de la tarjeta -->
         <p class="inv-eyebrow">Estás invitado a celebrar</p>
         
         <div class="inv-subtitle-line">Mis XV Años</div>
         <h1 class="inv-name">Catherine</h1>
-
+ 
+        <p class="inv-for" id="invFor" hidden>Invitación para<strong id="guestName"></strong></p>
+ 
         <div class="inv-date-single">
             <p>14 de Noviembre · 2026</p>
         </div>
-
+ 
         <p class="inv-footer-text">Toca el sello de cera para abrir la invitación</p>
     </div>
-
+ 
+    <script src="sello.js"></script>
 </body>
 </html>

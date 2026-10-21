@@ -1,7 +1,7 @@
 /* =========================================================
    Tarjeta de Entrada / Sello 3D · Mis XV Catherine
    ========================================================= */
-
+ 
 body.sello-page {
     background-color: #38131a;
     background-image: radial-gradient(circle at 50% 30%, #4d1c26 0%, #38131a 60%, #1e0509 100%);
@@ -13,7 +13,7 @@ body.sello-page {
     font-family: 'Josefin Sans', sans-serif;
     overflow-x: hidden;
 }
-
+ 
 .invitation-container {
     position: relative;
     width: 100%;
@@ -26,7 +26,7 @@ body.sello-page {
     border-radius: 3px;
     box-sizing: border-box;
 }
-
+ 
 /* Sello de cera 3D interactivo */
 .wax-seal-wrapper {
     position: absolute;
@@ -35,7 +35,7 @@ body.sello-page {
     transform: translateX(-50%);
     z-index: 10;
 }
-
+ 
 .wax-seal {
     width: 84px;
     height: 84px;
@@ -50,7 +50,7 @@ body.sello-page {
     text-decoration: none;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
+ 
 .wax-seal:hover, 
 .wax-seal:active {
     transform: scale(1.06);
@@ -58,7 +58,7 @@ body.sello-page {
                 inset 0 3px 6px rgba(255, 255, 255, 0.4), 
                 inset 0 -6px 10px rgba(0, 0, 0, 0.7);
 }
-
+ 
 /* Monograma "C" dorado sobre el lacre */
 .wax-seal span {
     font-family: 'Great Vibes', cursive;
@@ -67,7 +67,7 @@ body.sello-page {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 1px rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
 }
-
+ 
 .inv-eyebrow {
     font-size: 0.72rem;
     letter-spacing: 0.3em;
@@ -75,40 +75,37 @@ body.sello-page {
     color: #666;
     margin: 0 0 14px 0;
 }
-
+ 
 .inv-subtitle-line {
     font-family: 'Poiret One', sans-serif;
-    font-size: 1.5rem;
+    font-size: clamp(1.15rem, 6vw, 1.5rem);
     color: #38131a;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin: 0 0 10px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
-
-.inv-subtitle-line::before, 
+ 
+/* Líneas doradas a los lados del texto (ya no lo atraviesan) */
+.inv-subtitle-line::before,
 .inv-subtitle-line::after {
     content: '';
-    position: absolute;
-    top: 50%;
-    width: 40px;
+    flex: 0 1 36px;
     height: 1px;
     background: #b58a3c;
 }
-
-.inv-subtitle-line::before { right: 80%; }
-.inv-subtitle-line::after { left: 80%; }
-
+ 
 .inv-name {
     font-family: 'Great Vibes', cursive;
-    font-size: 4.5rem;
+    font-size: clamp(3.4rem, 17vw, 4.5rem);
     line-height: 1.05;
     color: #38131a;
     margin: 5px 0 20px;
 }
-
+ 
 /* Sección de la Fecha Centrada (Sin hora ni lugar) */
 .inv-date-single {
     border-top: 1px solid rgba(181, 138, 60, 0.45);
@@ -117,7 +114,7 @@ body.sello-page {
     margin: 22px 0 18px;
     text-align: center;
 }
-
+ 
 .inv-date-single h4 {
     font-size: 0.68rem;
     letter-spacing: 0.22em;
@@ -125,7 +122,7 @@ body.sello-page {
     color: #8c6828;
     margin: 0 0 4px 0;
 }
-
+ 
 .inv-date-single p {
     font-size: 0.95rem;
     color: #38131a;
@@ -134,7 +131,7 @@ body.sello-page {
     margin: 0;
     letter-spacing: 0.05em;
 }
-
+ 
 .inv-footer-text {
     font-size: 0.85rem;
     font-style: italic;
@@ -142,3 +139,34 @@ body.sello-page {
     margin: 16px 0 0 0;
     letter-spacing: 0.04em;
 }
+ 
+/* Nombre de la familia invitada */
+.inv-for {
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0 0 4px;
+}
+.inv-for strong {
+    display: block;
+    margin-top: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.05rem, 5vw, 1.3rem);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #38131a;
+    overflow-wrap: anywhere;
+}
+[hidden] { display: none !important; }
+ 
+/* El sello invita a tocarlo */
+.wax-seal { animation: sello-pulso 2.6s ease-in-out infinite; cursor: pointer; }
+@keyframes sello-pulso {
+    0%, 100% { box-shadow: 0 12px 28px rgba(0,0,0,.55), inset 0 3px 6px rgba(255,255,255,.3), inset 0 -6px 10px rgba(0,0,0,.7), 0 0 0 0 rgba(181,138,60,.5); }
+    50%      { box-shadow: 0 12px 28px rgba(0,0,0,.55), inset 0 3px 6px rgba(255,255,255,.3), inset 0 -6px 10px rgba(0,0,0,.7), 0 0 0 16px rgba(181,138,60,0); }
+}
+@media (prefers-reduced-motion: reduce) { .wax-seal { animation: none; } }
+body.sello-page { min-height: 100vh; min-height: 100dvh; }
+.invitation-container { transition: opacity .7s ease, transform .7s ease; }
+body.abriendo .invitation-container { opacity: 0; transform: scale(1.04); }

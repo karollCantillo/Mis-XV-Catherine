@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Mis XV · Catherine</title>
     <meta name="description" content="Estás invitado a celebrar mis XV años. 14 de noviembre de 2026 · Salón de Eventos Le Grand.">
     <meta name="theme-color" content="#38131a">
@@ -13,7 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,400&family=Limelight&family=Poiret+One&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- Hoja de Estilos Externa -->
-    <link rel="stylesheet" href="prueba.css">
+    <link rel="stylesheet" href="invitacion.css">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body style="background-color: #38131a; color: #F2ECD9; margin: 0; overflow-x: hidden;">
 
@@ -223,28 +224,42 @@
 
                 <div class="rsvp-box" id="rsvpBox">
                     <!-- Bloque principal de confirmación -->
-                    <div id="rsvpMain">
+                    <p class="rsvp-nofam" id="rsvpNoFam" hidden>Abre el link personal de tu invitación para confirmar tu asistencia.</p>
+                    <div id="rsvpMain" hidden>
                         <h3 class="rsvp-family" id="rsvpFamily"></h3>
                         <p class="rsvp-seats" id="rsvpSeats">Cupos asignados: <span>1</span></p>
 
-                        <!-- Botones de acción directos -->
-                        <div id="rsvpForm">
+                        <!-- Formulario: elegir cuántas personas y confirmar -->
+                        <div id="rsvpForm" hidden>
+                            <div id="seatPicker">
+                                <p class="rsvp-ask">¿Cuántas personas asistirán?</p>
+                                <div class="stepper">
+                                    <button type="button" id="minus" aria-label="Una persona menos">−</button>
+                                    <output id="count" aria-live="polite">1</output>
+                                    <button type="button" id="plus" aria-label="Una persona más">+</button>
+                                </div>
+                                <p class="rsvp-note">Los niños cuentan dentro del cupo.</p>
+                            </div>
                             <div class="btn-group-rsvp">
                                 <button type="button" class="btn gold-btn block" id="btnYes">Confirmar Asistencia</button>
                                 <button type="button" class="btn ghost-btn block" id="btnNo">No Podré Asistir</button>
                             </div>
                         </div>
 
-                        <!-- Pantalla de confirmación exitosa en pantalla -->
-                        <div id="rsvpDone" style="display: none;">
-                            <div class="check-icon">✓</div>
-                            <p class="done-title">¡Asistencia Confirmada!</p>
+                        <!-- Respuesta ya registrada -->
+                        <div id="rsvpDone" hidden>
+                            <div class="check-icon" id="rsvpIcon">✓</div>
+                            <p class="done-title" id="rsvpDoneTitle">¡Asistencia Confirmada!</p>
                             <p class="done-text" id="rsvpDoneText"></p>
-                            <button type="button" class="btn ghost-btn block" id="btnChange" style="margin-top: 15px;">Cambiar mi respuesta</button>
+                            <div class="btn-group-rsvp done-actions">
+                                <button type="button" class="btn ghost-btn block" id="btnChange">Cambiar mi respuesta</button>
+                                <button type="button" class="btn ghost-btn block" id="btnCancel">Cancelar asistencia</button>
+                                <a class="btn ghost-btn block" id="btnWa" href="#" target="_blank" rel="noopener" hidden>Avisar también por WhatsApp</a>
+                            </div>
                         </div>
 
                         <!-- Mensaje automático si se vence el plazo (después del 5 de Noviembre) -->
-                        <p class="note-closed" id="rsvpClosed" style="display: none;">El plazo para confirmar ha finalizado el 5 de Noviembre.</p>
+                        <p class="note-closed" id="rsvpClosed" hidden>El plazo para confirmar ha finalizado el 5 de Noviembre.</p>
                         <p class="status-msg-rsvp" id="rsvpMsg" role="status"></p>
                     </div>
                 </div>
@@ -267,6 +282,9 @@
                     <button type="button" class="chip" data-copy="#diva">#diva</button>
                     <button type="button" class="chip" data-copy="#misquince">#misquince</button>
                 </div>
+
+                <p class="chips-actions"><button type="button" class="btn ghost-btn" id="copyAll">Copiar hashtags</button></p>
+                <p class="chips-actions"><a class="btn gold-btn" id="albumBtn" href="#" target="_blank" rel="noopener" hidden>Sube tus fotos al álbum</a></p>
 
                 <div class="closing">
                     <p id="closingMsg">Gracias por ser parte de esta noche tan especial. Los espero para brillar juntos.</p>
