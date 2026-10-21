@@ -1,0 +1,901 @@
+/* ============ BOTÓN FLOTANTE DE MÚSICA ============ */
+.float-btn.music-only {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: #38131a;
+    color: #f5e4a8;
+    border: 1px solid #b58a3c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.float-btn.music-only:active {
+    transform: scale(0.92);
+}
+
+/* Ocultar o mostrar la barra tachada según si está reproducida o pausada */
+.float-btn.music-only .slash {
+    transition: opacity 0.2s ease;
+}
+
+.float-btn.music-only.playing .slash {
+    opacity: 0; /* Oculta la diagonal cuando la música está sonando */
+}
+
+/* ============ 1. PORTADA HERO (OPTIMIZADA PARA CELULAR) ============ */
+header.hero {
+    background-color: #38131a;
+    height: 100vh; /* Altura exacta de la pantalla del celular */
+    min-height: 550px; /* Asegura que no quede aplastada en móviles muy pequeños */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.hero-card {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-card .linea-mis {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.6rem;
+    color: #d6b567;
+    margin: 0 0 6px 0;
+    line-height: 1;
+}
+
+.hero-card .linea-xv {
+    font-family: 'Cinzel', serif;
+    font-size: 5.8rem;
+    font-weight: 700;
+    color: #F2ECD9;
+    letter-spacing: 0.1em;
+    margin: 0 0 6px 0;
+    line-height: 0.9;
+}
+
+.hero-card .linea-anos {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.6rem;
+    color: #d6b567;
+    margin: 0 0 16px 0;
+    line-height: 1;
+}
+
+.hero-card .hero-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    color: #F2ECD9;
+    margin: 0 0 16px 0;
+    line-height: 1;
+}
+
+.hero-card .diamond-divider {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #b58a3c, transparent);
+    margin: 10px auto 0;
+}
+
+/* ============ 2. SECCIÓN FRASE (CON DISTANCIA PERFECTA PARA MÓVIL) ============ */
+.section-frase {
+    padding: 50px 20px; /* Espacio elegante que separa la portada de la frase en celulares */
+    background-color: #38131a;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card-frase {
+    background-color: #F2ECD9 !important;
+    color: #38131a !important;
+    padding: 30px 22px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid #b58a3c;
+    box-sizing: border-box;
+}
+
+.card-frase .quote {
+    font-family: 'Great Vibes', 'Playfair Display', cursive, serif !important;
+    font-style: italic !important;
+    font-size: 2rem !important;
+    line-height: 1.4 !important;
+    color: #38131a !important;
+    margin: 14px 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.card-frase .diamond-divider-inner {
+    width: 80px;
+    height: 1px;
+    background: #b58a3c;
+    margin: 0 auto;
+}
+
+/* ============ SECCIÓN FECHA Y CUENTA REGRESIVA ============ */
+.section-fecha {
+    padding: 30px 20px 50px;
+    background-color: #38131a;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card-fecha {
+    background-color: #F2ECD9 !important; /* Fondo Marfil */
+    color: #38131a !important;            /* Texto Vino Tinto */
+    padding: 32px 24px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid #b58a3c;           /* Borde Dorado */
+    box-sizing: border-box;
+}
+
+.card-fecha .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.18em;
+    color: #38131a;
+    margin: 12px 0 20px;
+    text-transform: uppercase;
+}
+
+/* Distribución horizontal con el 14 en la mitad */
+.fecha-triada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0 5px;
+}
+
+.fecha-col {
+    display: inline-block;
+}
+
+.fecha-dia,
+.fecha-mes {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: #38131a;
+    text-transform: uppercase;
+    border-top: 1px solid #b58a3c;
+    border-bottom: 1px solid #b58a3c;
+    padding: 6px 0;
+    min-width: 90px;
+}
+
+.fecha-num {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem; /* Número 14 Gigante */
+    font-weight: 700;
+    color: #7a1c2d;    /* Vino tinto resaltado */
+    line-height: 0.9;
+    padding: 0 5px;
+}
+
+.card-fecha .date-year {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: #8c6828;
+    margin: 8px 0 2px;
+}
+
+.card-fecha .date-time {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: #7a1c2d;
+    margin: 2px 0 20px;
+}
+
+/* Cajas de la Cuenta Regresiva */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.count-box {
+    background-color: #38131a;
+    color: #F2ECD9;
+    padding: 10px 12px;
+    border-radius: 4px;
+    min-width: 65px;
+    border: 1px solid #b58a3c;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.count-box b {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: #f5e4a8;
+}
+
+.count-box span {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #d6c0a5;
+    margin-top: 2px;
+}
+
+/* Botones de Calendario */
+.card-fecha .btn-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card-fecha .gold-btn {
+    background-color: #38131a;
+    color: #f5e4a8;
+    border: 1px solid #b58a3c;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.card-fecha .gold-btn:hover {
+    background-color: #58101c;
+    color: #ffffff;
+}
+
+/* ============ SECCIONES LUGAR Y DRESS CODE (DIRECTO SOBRE EL FONDO VINO TINTO) ============ */
+.section-lugar,
+.section-dress {
+    padding: 40px 20px;
+    background-color: #38131a; /* Fondo vino tinto continuo */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.content-lugar,
+.content-dress {
+    background: transparent !important; /* Sin caja de fondo */
+    border: none !important;
+    box-shadow: none !important;
+    color: #F2ECD9 !important;          /* Textos en color marfil claro */
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-sizing: border-box;
+}
+
+.content-lugar .section-title,
+.content-dress .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.2em;
+    color: #d6b567;                    /* Títulos en dorado elegante */
+    margin: 15px 0 15px;
+    text-transform: uppercase;
+}
+
+/* Estilos de Lugar */
+.content-lugar .venue {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #F2ECD9;
+    margin: 0 0 6px;
+    letter-spacing: 0.05em;
+}
+
+.content-lugar .address {
+    font-size: 0.95rem;
+    color: #d6c0a5;
+    margin-bottom: 22px;
+    letter-spacing: 0.05em;
+}
+
+/* Botón de Mapas Estilizado */
+.content-lugar .gold-btn {
+    display: inline-block;
+    background-color: #26090f;
+    color: #f5e4a8;
+    border: 1px solid #b58a3c;
+    padding: 11px 22px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+
+.content-lugar .gold-btn:hover {
+    background-color: #58101c;
+    color: #ffffff;
+}
+
+/* Estilos de Dress Code */
+.content-dress .dress-main {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: #F2ECD9;
+    margin: 10px 0 12px;
+    text-transform: uppercase;
+}
+
+.content-dress .swatches {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0 5px;
+}
+
+.content-dress .swatch {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #b58a3c;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.content-dress .swatch.red {
+    background-color: #58101c; /* Tono vino tinto reservado */
+}
+
+.content-dress .swatch.gold {
+    background-color: #d6b567; /* Dorado reservado */
+}
+
+.content-dress .small-text {
+    font-size: 0.85rem;
+    color: #d6c0a5;
+    line-height: 1.4;
+    margin-top: 10px;
+    letter-spacing: 0.04em;
+}
+
+.content-dress .small-text strong {
+    color: #f5e4a8;
+    font-weight: 600;
+}
+
+/* Divisores internos dorados */
+.diamond-divider-inner {
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #b58a3c, transparent);
+    margin: 0 auto;
+}
+
+/* ============ SECCIÓN ITINERARIO (LÍNEA VERTICAL CON ROMBOS) ============ */
+.section-itinerario {
+    padding: 40px 20px;
+    background-color: #38131a;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.content-itinerario {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #F2ECD9 !important;
+    padding: 10px 10px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-sizing: border-box;
+}
+
+.content-itinerario .section-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    color: #F2ECD9;
+    margin: 10px 0 25px;
+    font-weight: normal;
+}
+
+/* Contenedor principal de la línea vertical */
+.timeline-vertical {
+    position: relative;
+    max-width: 380px;
+    margin: 30px auto 10px;
+    padding: 10px 0;
+}
+
+/* La línea dorada central */
+.timeline-vertical::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, #b58a3c 10%, #b58a3c 90%, transparent);
+    transform: translateX(-50%);
+}
+
+/* Filas del itinerario */
+.timeline-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 28px;
+    width: 100%;
+}
+
+.timeline-item.left {
+    justify-content: flex-end;
+}
+
+.timeline-item.right {
+    justify-content: flex-start;
+}
+
+/* Contenido de texto */
+.timeline-content {
+    width: 42%;
+    box-sizing: border-box;
+}
+
+.timeline-item.left .timeline-content {
+    text-align: right;
+    padding-right: 12px;
+}
+
+.timeline-item.right .timeline-content {
+    text-align: left;
+    padding-left: 12px;
+}
+
+.timeline-content h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.9rem;
+    color: #F2ECD9;
+    margin: 0;
+    line-height: 1.1;
+    font-weight: normal;
+}
+
+.timeline-content .time {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: #d6b567;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+/* Iconos decorativos */
+.timeline-icon {
+    font-size: 1.4rem;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Rombo central (nodo en la línea) */
+.timeline-node {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #b58a3c;
+    font-size: 0.8rem;
+    background-color: #38131a;
+    padding: 2px 0;
+    z-index: 2;
+}
+
+/* Divisor dorado */
+.diamond-divider-inner {
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #b58a3c, transparent);
+    margin: 0 auto;
+}
+
+/* ============ SECCIÓN REGALO (EN CAJA MARFIL) ============ */
+.section-regalo {
+    padding: 35px 20px;
+    background-color: #38131a;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card-regalo {
+    background-color: #F2ECD9 !important; /* Fondo Marfil */
+    color: #38131a !important;            /* Texto Vino Tinto */
+    padding: 32px 24px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid #b58a3c;           /* Borde Dorado */
+    box-sizing: border-box;
+}
+
+.card-regalo .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.18em;
+    color: #38131a;
+    margin: 12px 0 18px;
+    text-transform: uppercase;
+}
+
+.card-regalo .icon-container {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.card-regalo .envelope-icon {
+    width: 52px;
+    height: 40px;
+    color: #b58a3c;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+.card-regalo .regalo-text {
+    font-size: 0.95rem;
+    color: #38131a;
+    line-height: 1.5;
+    margin: 15px 0 10px;
+    letter-spacing: 0.03em;
+}
+
+.card-regalo .regalo-text strong {
+    color: #7a1c2d;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Divisor dorado interno */
+.diamond-divider-inner {
+    width: 80px;
+    height: 1px;
+    background: #b58a3c;
+    margin: 0 auto;
+}
+
+/* ============ 9. SECCIÓN RSVP / CONFIRMACIÓN (TARJETA MARFIL) ============ */
+.section-rsvp {
+    padding: 35px 20px 50px;
+    background-color: #38131a;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card-rsvp {
+    background-color: #F2ECD9 !important; /* Fondo Marfil */
+    color: #38131a !important;            /* Texto Vino Tinto */
+    padding: 32px 24px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid #b58a3c;           /* Borde Dorado */
+    box-sizing: border-box;
+}
+
+.card-rsvp .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.18em;
+    color: #38131a;
+    margin: 12px 0 6px;
+    text-transform: uppercase;
+}
+
+.card-rsvp .deadline-text {
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 20px;
+    letter-spacing: 0.03em;
+}
+
+.card-rsvp .deadline-text strong {
+    color: #7a1c2d;
+}
+
+/* Nombre de la familia y cupos asignados */
+.card-rsvp .rsvp-family {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.3rem;
+    color: #7a1c2d;
+    margin: 10px 0 4px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.card-rsvp .rsvp-seats {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: #8c6828;
+    margin-bottom: 22px;
+    font-weight: 600;
+}
+
+.card-rsvp .rsvp-seats span {
+    color: #38131a;
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+/* Grupo de Botones de Confirmación */
+.btn-group-rsvp {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.card-rsvp .gold-btn.block,
+.card-rsvp .ghost-btn.block {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.card-rsvp .gold-btn {
+    background-color: #38131a;
+    color: #f5e4a8;
+    border: 1px solid #b58a3c;
+}
+
+.card-rsvp .gold-btn:hover {
+    background-color: #58101c;
+    color: #ffffff;
+}
+
+.card-rsvp .ghost-btn {
+    background: transparent;
+    color: #38131a;
+    border: 1px solid #38131a;
+}
+
+.card-rsvp .ghost-btn:hover {
+    background-color: rgba(56, 19, 26, 0.08);
+}
+
+/* Pantalla de confirmación exitosa */
+.card-rsvp .check-icon {
+    font-size: 2.2rem;
+    color: #8c6828;
+    margin-bottom: 6px;
+    line-height: 1;
+}
+
+.card-rsvp .done-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: #7a1c2d;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.card-rsvp .done-text {
+    font-size: 0.95rem;
+    color: #38131a;
+    line-height: 1.45;
+}
+
+/* Mensaje si venció el plazo del 5 de Noviembre */
+.card-rsvp .note-closed {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: #7a1c2d;
+    background-color: rgba(122, 28, 45, 0.08);
+    border: 1px dashed #b58a3c;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.card-rsvp .status-msg-rsvp {
+    font-size: 0.85rem;
+    margin-top: 12px;
+    color: #b58a3c;
+    font-weight: 600;
+}
+
+/* ============ 10. SECCIÓN HASHTAGS Y CIERRE (TARJETA MARFIL) ============ */
+.section-album {
+    padding: 35px 20px 60px;
+    background-color: #38131a;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card-album {
+    background-color: #F2ECD9 !important; /* Fondo Marfil */
+    color: #38131a !important;            /* Texto Vino Tinto */
+    padding: 32px 24px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto !important;
+    text-align: center !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid #b58a3c;           /* Borde Dorado */
+    box-sizing: border-box;
+}
+
+.card-album .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.18em;
+    color: #38131a;
+    margin: 12px 0 10px;
+    text-transform: uppercase;
+}
+
+.card-album .small-text {
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 18px;
+    letter-spacing: 0.03em;
+}
+
+/* Chips / Botones de Hashtags */
+.card-album .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.card-album .chip {
+    background-color: #38131a;
+    color: #f5e4a8;
+    border: 1px solid #b58a3c;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    cursor: default; /* Ya no es necesario hacer clic para copiar, se quedan de adorno elegante */
+    transition: background 0.2s;
+}
+
+.card-album .chip:hover {
+    background-color: #58101c;
+}
+
+/* Cierre y Firma */
+.card-album .closing {
+    border-top: 1px dashed rgba(181, 138, 60, 0.4);
+    padding-top: 20px;
+    margin-top: 15px;
+}
+
+.card-album .closing p {
+    font-size: 0.92rem;
+    color: #38131a;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.card-album .signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #7a1c2d;
+    margin: 5px 0 0;
+    line-height: 1;
+}
+
+/* Divisor dorado interno */
+.diamond-divider-inner {
+    width: 80px;
+    height: 1px;
+    background: #b58a3c;
+    margin: 0 auto;
+}
+
+/* ============ FOOTER / PIE DE PÁGINA CENTRADO ============ */
+.site-footer {
+    width: 100%;
+    background-color: #38131a; /* Fondo vino tinto continuo */
+    padding: 25px 20px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(181, 138, 60, 0.25); /* Línea sutil dorada de separación */
+}
+
+.site-footer p {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    color: #d6c0a5; /* Color marfil / dorado claro */
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.site-footer span#anioActual {
+    color: #f5e4a8;
+    font-weight: 600;
+}

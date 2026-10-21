@@ -1,0 +1,144 @@
+/* =========================================================
+   Tarjeta de Entrada / Sello 3D · Mis XV Catherine
+   ========================================================= */
+
+body.sello-page {
+    background-color: #38131a;
+    background-image: radial-gradient(circle at 50% 30%, #4d1c26 0%, #38131a 60%, #1e0509 100%);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 30px 20px;
+    margin: 0;
+    font-family: 'Josefin Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+.invitation-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    background: #F2ECD9; /* Marfil elegante */
+    color: #38131a;
+    padding: 65px 28px 38px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(181, 138, 60, 0.2);
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+/* Sello de cera 3D interactivo */
+.wax-seal-wrapper {
+    position: absolute;
+    top: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.wax-seal {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #8c2538 0%, #4d1420 55%, #23080d 100%);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55), 
+                inset 0 3px 6px rgba(255, 255, 255, 0.3), 
+                inset 0 -6px 10px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(181, 138, 60, 0.4);
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wax-seal:hover, 
+.wax-seal:active {
+    transform: scale(1.06);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7), 
+                inset 0 3px 6px rgba(255, 255, 255, 0.4), 
+                inset 0 -6px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Monograma "C" dorado sobre el lacre */
+.wax-seal span {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.1rem;
+    color: #d6b567; /* Dorado claro resaltante */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 -1px 1px rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.inv-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0 0 14px 0;
+}
+
+.inv-subtitle-line {
+    font-family: 'Poiret One', sans-serif;
+    font-size: 1.5rem;
+    color: #38131a;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.inv-subtitle-line::before, 
+.inv-subtitle-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 1px;
+    background: #b58a3c;
+}
+
+.inv-subtitle-line::before { right: 80%; }
+.inv-subtitle-line::after { left: 80%; }
+
+.inv-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4.5rem;
+    line-height: 1.05;
+    color: #38131a;
+    margin: 5px 0 20px;
+}
+
+/* Sección de la Fecha Centrada (Sin hora ni lugar) */
+.inv-date-single {
+    border-top: 1px solid rgba(181, 138, 60, 0.45);
+    border-bottom: 1px solid rgba(181, 138, 60, 0.45);
+    padding: 14px 0;
+    margin: 22px 0 18px;
+    text-align: center;
+}
+
+.inv-date-single h4 {
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #8c6828;
+    margin: 0 0 4px 0;
+}
+
+.inv-date-single p {
+    font-size: 0.95rem;
+    color: #38131a;
+    line-height: 1.35;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+.inv-footer-text {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #666;
+    margin: 16px 0 0 0;
+    letter-spacing: 0.04em;
+}
