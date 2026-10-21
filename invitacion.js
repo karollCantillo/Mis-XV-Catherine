@@ -13,10 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         lugar: "Salón de Eventos Le Grand, Cra 47 #72-104, Barranquilla",
         mapsUrl: "https://maps.app.goo.gl/adJExLu59pzZqfbYA",
  
-        // CONFIRMACIÓN — usa una de las dos (o las dos):
-        // 1) Google Sheets: pega aquí la URL de la app web (ver google-apps-script.gs)
-        scriptUrl: "https://script.google.com/macros/s/AKfycbyi7Y8aM-jGianQsBFDnKksD09rXLNhiVeObmnFOHtnbwAszXUpKbt345Z597u6pNEIbg/exec",
-        // 2) WhatsApp: número con código de país, sin + ni espacios. Ej: "573001234567"
+        // CONFIRMACIÓN — API en Cloudflare (Worker + base de datos D1)
+        apiUrl: "https://xv-catherine-api.xv-catherine.workers.dev",
+        // WhatsApp (opcional): número con código de país, sin + ni espacios. Ej: "573001234567"
         whatsapp: "573004673523",
  
         albumUrl: "https://photos.app.goo.gl/tDVtaLkbte8xFnfM6",   // link del álbum compartido (opcional)
@@ -65,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1. CONFIRMACIÓN DE ASISTENCIA (RSVP) con código privado
     // ==========================================
     // El link de cada invitado es: ?c=CODIGO
-    // La familia y los cupos los entrega Google Sheets; el link ya no los trae.
+    // La familia y los cupos los entrega la API; el link ya no los trae.
     const codigo = (params.get("c") || "").trim();
     let familia = "";
     let cupos = 1;
@@ -141,9 +140,12 @@ document.addEventListener("DOMContentLoaded", function () {
         [btnYes, btnNo, btnChange, btnCancel].forEach((b) => b && (b.disabled = true));
  
         try {
-            // Solo se envía el código, el estado y las personas. El cupo lo valida Google.
-            const q = new URLSearchParams({ action: "rsvp", c: codigo, estado: nuevoEstado, personas: n });
-            const r = await fetch(CONFIG.scriptUrl + "?" + q.toString());
+            // Solo se envía el código, el estado y las personas. El cupo lo valida el servidor.
+            const r = await fetch(CONFIG.apiUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ c: codigo, estado: nuevoEstado, personas: n })
+            });
             const d = await r.json();
             if (!d.ok) throw new Error(d.error || "No se pudo guardar");
             estado = nuevoEstado;
@@ -161,9 +163,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
  
     async function cargarInvitado() {
-        if (!codigo || !CONFIG.scriptUrl) { renderRsvp(); return; }
+        if (!codigo) { renderRsvp(); return; }
         try {
-            const r = await fetch(CONFIG.scriptUrl + "?action=info&c=" + encodeURIComponent(codigo));
+            const r = await fetch(CONFIG.apiUrl + "?c=" + encodeURIComponent(codigo));
             const d = await r.json();
             if (d && d.ok) {
                 familia = d.familia;
