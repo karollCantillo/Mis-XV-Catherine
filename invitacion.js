@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
  
         // CONFIRMACIÓN — usa una de las dos (o las dos):
         // 1) Google Sheets: pega aquí la URL de la app web (ver google-apps-script.gs)
-        scriptUrl: "https://script.google.com/macros/s/AKfycbxHYpQdrTlij7nRNcD-69R0_fjhJBW1OzSDxMpa7xMWGVKpOcTZXMfUvJZ5IGPDkR88ew/exec",
+        scriptUrl: "https://script.google.com/macros/s/AKfycbyi7Y8aM-jGianQsBFDnKksD09rXLNhiVeObmnFOHtnbwAszXUpKbt345Z597u6pNEIbg/exec",
         // 2) WhatsApp: número con código de país, sin + ni espacios. Ej: "573001234567"
         whatsapp: "573004673523",
  

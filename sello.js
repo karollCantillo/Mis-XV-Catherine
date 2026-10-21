@@ -5,8 +5,8 @@
     var familia = (params.get("familia") || "").trim();
     var codigo = (params.get("c") || "").trim();
 
-    // URL de tu aplicación web de Google Apps Script
-    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHYpQdrTlij7nRNcD-69R0_fjhJBW1OzSDxMpa7xMWGVKpOcTZXMfUvJZ5IGPDkR88ew/exec";
+    // PEGA AQUÍ LA NUEVA URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyi7Y8aM-jGianQsBFDnKksD09rXLNhiVeObmnFOHtnbwAszXUpKbt345Z597u6pNEIbg/exec";
 
     var guestNameElem = document.getElementById("guestName");
     var invForElem = document.getElementById("invFor");
@@ -18,24 +18,24 @@
         }
     }
 
-    // 1. Si viene ?familia= en la URL
+    // 1. Si la URL ya trae ?familia=... lo mostramos de inmediato
     if (familia) {
         mostrarNombre(familia);
     } 
-    // 2. Si viene ?c= en la URL, consultamos a Google Sheets
+    // 2. Si la URL trae ?c=... consultamos a Google Sheets para obtener el nombre
     else if (codigo && SCRIPT_URL) {
-        // Usamos mode: 'no-cors' o consultamos directo
         fetch(SCRIPT_URL + "?action=info&c=" + encodeURIComponent(codigo))
             .then(function (res) { return res.json(); })
             .then(function (data) {
                 if (data && data.ok && data.familia) {
                     mostrarNombre(data.familia);
+                } else {
+                    mostrarNombre("Invitado Especial");
                 }
             })
             .catch(function (err) {
-                console.warn("Error consultando código:", err);
-                // Plan B: Si falla el fetch por CORS, puedes mostrar un texto genérico o el código
-                mostrarNombre("Invitado Especial");
+                console.warn("Error al cargar el invitado:", err);
+                mostrarNombre("Estimado Invitado");
             });
     }
 
@@ -62,7 +62,7 @@
                     }
                 } catch (err) {}
 
-                // Conserva el ?c=... o ?familia=... al pasar a la invitación
+                // Pasa a la invitación conservando el código o parámetros en la URL
                 window.location.href = "invitacion.html" + window.location.search;
             }, 800);
         });
