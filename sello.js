@@ -11,20 +11,20 @@
     var guestNameElem = document.getElementById("guestName");
     var invForElem = document.getElementById("invFor");
 
-    // Función para mostrar el nombre en la tarjeta de entrada
     function mostrarNombre(nombre) {
         if (guestNameElem && invForElem && nombre) {
-            guestNameElem.textContent = nombre;
+            guestNameElem.textContent = " " + nombre;
             invForElem.hidden = false;
         }
     }
 
-    // 1. Si la URL ya trae ?familia=... lo mostramos de inmediato
+    // 1. Si viene ?familia= en la URL
     if (familia) {
         mostrarNombre(familia);
     } 
-    // 2. Si la URL trae ?c=... consultamos a Google Sheets para obtener el nombre
+    // 2. Si viene ?c= en la URL, consultamos a Google Sheets
     else if (codigo && SCRIPT_URL) {
+        // Usamos mode: 'no-cors' o consultamos directo
         fetch(SCRIPT_URL + "?action=info&c=" + encodeURIComponent(codigo))
             .then(function (res) { return res.json(); })
             .then(function (data) {
@@ -33,7 +33,9 @@
                 }
             })
             .catch(function (err) {
-                console.warn("No se pudo cargar el nombre del invitado:", err);
+                console.warn("Error consultando código:", err);
+                // Plan B: Si falla el fetch por CORS, puedes mostrar un texto genérico o el código
+                mostrarNombre("Invitado Especial");
             });
     }
 
@@ -48,21 +50,19 @@
             if (opening) return;
             opening = true;
 
-            // Permiso del navegador para reproducir sonido
             if (bgm) {
                 bgm.play().catch(function () {});
             }
 
             document.body.classList.add("abriendo");
             setTimeout(function () {
-                // Guardamos en qué segundo va la canción para continuarla en la otra página
                 try {
                     if (bgm) {
                         sessionStorage.setItem(MKEY, JSON.stringify({ t: bgm.currentTime || 0 }));
                     }
-                } catch (err) { /* nada */ }
+                } catch (err) {}
 
-                // Se conserva toda la URL actual (ya sea ?familia=... o ?c=...) al pasar a la invitación
+                // Conserva el ?c=... o ?familia=... al pasar a la invitación
                 window.location.href = "invitacion.html" + window.location.search;
             }, 800);
         });
