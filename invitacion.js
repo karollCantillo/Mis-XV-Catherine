@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // CONFIRMACIÓN — usa una de las dos (o las dos):
         // 1) Google Sheets: pega aquí la URL de la app web (ver google-apps-script.gs)
-        scriptUrl: "https://script.google.com/macros/s/AKfycby5-cM0JTs9ggWIJyvL7OKEnhhvBccIswOFIVwJ5OomEeuzmx6y5bjjmDU1T_mxwZz4iA/exec",
+        scriptUrl: "https://script.google.com/macros/s/AKfycbxHYpQdrTlij7nRNcD-69R0_fjhJBW1OzSDxMpa7xMWGVKpOcTZXMfUvJZ5IGPDkR88ew/exec",
         // 2) WhatsApp: número con código de país, sin + ni espacios. Ej: "573001234567"
         whatsapp: "573004673523",
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Fotos del carrusel (se muestran en blanco y negro). Súbelas a la carpeta /fotos
         fotos: [
             "fotos/01.png", "fotos/02.png", "fotos/03.png", "fotos/04.png", "fotos/05.png",
-            "fotos/06.png", "fotos/07.png", "fotos/08.png", "fotos/09.png", "fotos/10.png",
+            "fotos/07.png", "fotos/08.png", "fotos/09.png", "fotos/10.png",
             "fotos/11.png", "fotos/12.png", "fotos/13.png", "fotos/14.png", "fotos/15.png",
             "fotos/16.png", "fotos/17.png", "fotos/18.png", "fotos/19.png", "fotos/20.png",
             "fotos/21.png", "fotos/22.png", "fotos/23.png"
