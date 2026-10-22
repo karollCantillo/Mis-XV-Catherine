@@ -5,8 +5,8 @@
     var familia = (params.get("familia") || "").trim();
     var codigo = (params.get("c") || "").trim();
 
-    // PEGA AQUÍ LA NUEVA URL DE TU APLICACIÓN WEB DE GOOGLE APPS SCRIPT
-    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyi7Y8aM-jGianQsBFDnKksD09rXLNhiVeObmnFOHtnbwAszXUpKbt345Z597u6pNEIbg/exec";
+    // API en Cloudflare (la misma que usa invitacion.js)
+    var API_URL = "https://xv-catherine-api.xv-catherine.workers.dev";
 
     var guestNameElem = document.getElementById("guestName");
     var invForElem = document.getElementById("invFor");
@@ -23,8 +23,8 @@
         mostrarNombre(familia);
     } 
     // 2. Si la URL trae ?c=... consultamos a Google Sheets para obtener el nombre
-    else if (codigo && SCRIPT_URL) {
-        fetch(SCRIPT_URL + "?action=info&c=" + encodeURIComponent(codigo))
+    else if (codigo && API_URL) {
+        fetch(API_URL + "?c=" + encodeURIComponent(codigo))
             .then(function (res) { return res.json(); })
             .then(function (data) {
                 if (data && data.ok && data.familia) {

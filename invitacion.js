@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fotos: [
             "fotos/01.png", "fotos/02.png", "fotos/03.png", "fotos/04.png", "fotos/05.png",
             "fotos/06.png", "fotos/07.png", "fotos/08.png", "fotos/09.png", "fotos/10.png",
-            "fotos/11.png", "fotos/12.png", "fotos/13.png"
+            "fotos/11.png", "fotos/12.png", "fotos/13.png", "fotos/14.png", "fotos/15.png"
         ]
     };
  
@@ -412,6 +412,46 @@ document.addEventListener("DOMContentLoaded", function () {
         reveals.forEach((el) => el.classList.add("active"));
     }
  
+    // ==========================================
+    // 9. DESPLAZAMIENTO AUTOMÁTICO (solo al llegar desde el sello)
+    //    Espera unos segundos y baja despacio. Se detiene apenas la persona
+    //    toca, desliza, usa el mouse o el teclado.
+    // ==========================================
+    (function autoScroll() {
+        let vino = false;
+        try { vino = sessionStorage.getItem("xv-catherine:autoscroll") === "1"; sessionStorage.removeItem("xv-catherine:autoscroll"); } catch (e) { /* nada */ }
+        if (!vino || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        const ESPERA = 4000;      // milisegundos antes de empezar
+        const VELOCIDAD = 38;     // píxeles por segundo (más bajo = más lento)
+        let activo = false, parado = false, pos = 0, ultimo = 0, puesto = 0;
+
+        const parar = () => {
+            parado = true;
+            ["wheel", "touchstart", "pointerdown", "mousedown", "keydown"].forEach((ev) => window.removeEventListener(ev, parar));
+        };
+        const paso = (t) => {
+            if (parado) return;
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            if (Math.abs(window.scrollY - puesto) > 4) return parar();   // la persona movió la página
+            if (pos >= max - 1) return parar();                          // llegó al final
+            pos = Math.min(max, pos + VELOCIDAD * Math.min(t - ultimo, 100) / 1000);
+            ultimo = t;
+            puesto = Math.round(pos);
+            window.scrollTo({ top: puesto, behavior: "instant" });
+            requestAnimationFrame(paso);
+        };
+        const empezar = () => {
+            if (parado || window.scrollY > 40) return;   // si ya bajó por su cuenta, no se mete
+            activo = true; pos = window.scrollY; puesto = pos; ultimo = performance.now();
+            requestAnimationFrame(paso);
+        };
+
+        ["wheel", "touchstart", "pointerdown", "mousedown", "keydown"].forEach((ev) => window.addEventListener(ev, parar, { passive: true }));
+        const lanzar = () => setTimeout(empezar, ESPERA);
+        if (document.readyState === "complete") lanzar(); else window.addEventListener("load", lanzar, { once: true });
+    })();
+
     // ==========================================
     // 8. AÑO ACTUAL EN EL FOOTER
     // ==========================================
