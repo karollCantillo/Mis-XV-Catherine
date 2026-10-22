@@ -977,7 +977,7 @@ header.hero { height: auto; min-height: 100vh; min-height: 100svh; }
 .dots i.on { background: #b58a3c; }
 
 /* ---- Confirmación: selector de personas ---- */
-.rsvp-nofam { color: #F2ECD9; text-align: center; font-size: .95rem; line-height: 1.5; }
+.rsvp-nofam { color: #38131a; text-align: center; font-size: .95rem; line-height: 1.5; }
 .card-rsvp .rsvp-ask { font-size: .95rem; margin: 0 0 6px; color: #38131a; font-style: italic; }
 .stepper { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 8px 0 4px; }
 .stepper button { width: 46px; height: 46px; border-radius: 50%; border: 1px solid #38131a; background: transparent; color: #38131a; font-size: 1.5rem; line-height: 1; cursor: pointer; }
@@ -1023,3 +1023,54 @@ header.hero { height: auto; min-height: 100vh; min-height: 100svh; }
 body { font-family: 'Josefin Sans', sans-serif; }          /* la fuente ya se cargaba pero no se aplicaba */
 button, input, select, textarea { font-family: inherit; }
 .card-album .closing p.signature { font-family: 'Great Vibes', cursive; font-size: 2.8rem; font-style: normal; color: #7a1c2d; margin: 5px 0 0; line-height: 1; }
+
+/* ============ DECORACIÓN DE LA PORTADA (Art Déco) ============ */
+header.hero { overflow: hidden; isolation: isolate; background:
+    radial-gradient(ellipse at 50% 42%, #5a1d28 0%, #38131a 55%, #230a10 100%); }
+
+/* Abanico de rayos dorados detrás del XV */
+.hero-rays {
+    position: absolute; left: 50%; top: 40%; z-index: -1;
+    width: 150vmax; height: 150vmax; transform: translate(-50%, -50%);
+    background: repeating-conic-gradient(from 0deg, rgba(214,181,103,.10) 0deg 4deg, transparent 4deg 12deg);
+    -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0,0,0,.55) 18%, transparent 42%);
+            mask-image: radial-gradient(circle, #000 0%, rgba(0,0,0,.55) 18%, transparent 42%);
+    animation: heroGiro 240s linear infinite;
+}
+@keyframes heroGiro { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Marco doble dorado con esquinas */
+.hero-frame { position: absolute; inset: 14px; border: 1px solid #b58a3c; pointer-events: none; z-index: 0; }
+.hero-frame::before { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(214,181,103,.45); }
+.hero-frame .c { position: absolute; width: 26px; height: 26px; border: 0 solid #d6b567; }
+.hero-frame .c::after { content: ""; position: absolute; width: 7px; height: 7px; background: #d6b567; transform: rotate(45deg); }
+.hero-frame .tl { top: -1px; left: -1px; border-width: 3px 0 0 3px; }
+.hero-frame .tr { top: -1px; right: -1px; border-width: 3px 3px 0 0; }
+.hero-frame .bl { bottom: -1px; left: -1px; border-width: 0 0 3px 3px; }
+.hero-frame .br { bottom: -1px; right: -1px; border-width: 0 3px 3px 0; }
+.hero-frame .tl::after { top: 7px; left: 7px; } .hero-frame .tr::after { top: 7px; right: 7px; }
+.hero-frame .bl::after { bottom: 7px; left: 7px; } .hero-frame .br::after { bottom: 7px; right: 7px; }
+
+.hero-card { position: relative; z-index: 1; }
+.hero-invita {
+    font-family: 'Josefin Sans', sans-serif; font-size: clamp(.66rem, 2.9vw, .78rem); letter-spacing: .24em; text-transform: uppercase;
+    color: #d6b567; margin: 0 0 12px; max-width: 20em; line-height: 1.9;
+}
+.hero-fecha {
+    font-family: 'Josefin Sans', sans-serif; font-size: clamp(.7rem, 3.3vw, .9rem); letter-spacing: clamp(.2em, 1.6vw, .4em); text-transform: uppercase; white-space: nowrap;
+    color: #F2ECD9; margin: 14px 0 0;
+}
+/* Ornamento: línea – rombo – línea */
+.deco-orn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 190px; margin: 6px auto 14px; }
+.deco-orn i { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #b58a3c); }
+.deco-orn i:last-child { background: linear-gradient(270deg, transparent, #b58a3c); }
+.deco-orn b { width: 9px; height: 9px; background: #d6b567; transform: rotate(45deg); box-shadow: 0 0 0 3px #38131a, 0 0 0 4px #b58a3c; }
+.hero-card .hero-title { text-shadow: 0 2px 18px rgba(214,181,103,.28); }
+.hero-card .linea-xv { text-shadow: 0 0 30px rgba(214,181,103,.25); }
+
+/* Flecha que invita a seguir bajando */
+.hero-scroll { position: absolute; bottom: 34px; left: 50%; width: 28px; height: 28px; margin-left: -14px; z-index: 1; }
+.hero-scroll span { display: block; width: 12px; height: 12px; margin: 4px auto 0; border-right: 2px solid #d6b567; border-bottom: 2px solid #d6b567; transform: rotate(45deg); animation: heroFlecha 2.2s ease-in-out infinite; }
+@keyframes heroFlecha { 0%,100% { transform: translateY(0) rotate(45deg); opacity: .35; } 50% { transform: translateY(8px) rotate(45deg); opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) { .hero-rays, .hero-scroll span { animation: none; } }
