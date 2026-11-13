@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Inicio y fin del evento (hora de Colombia, UTC-5)
         inicio: "2026-11-14T20:00:00-05:00",
         horasDespuesDelInicio: 6,            // "el evento terminó" aparece 6 h después de empezar
-        limiteConfirmacion: "2026-11-05T23:59:59-05:00", // "" si no hay fecha límite
+        limiteConfirmacion: "2026-11-14T23:59:59-05:00", // "" si no hay fecha límite
  
         lugar: "Salón de Eventos Le Grand, Cra 47 #72-104, Barranquilla",
         mapsUrl: "https://maps.app.goo.gl/adJExLu59pzZqfbYA",
